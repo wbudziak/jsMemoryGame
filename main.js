@@ -1,7 +1,7 @@
 const container = document.querySelector('.container');
 const btn = document.querySelector("button");
 const moves = document.querySelector('span');
-// btn.style.display = "none";
+
 const tilesArray = [];
 let numbers = [0, 1, 2, 3, 4, 5, 6, 7];
 let number = 0;
@@ -9,8 +9,8 @@ let toEnd = 8;
 
 let canAgain = false;
 let flag = true;
-let clickTwo = "";
-let indexTwo = 0;
+let clickB = "";
+let indexB = 0;
 
 const score = () => {
     if (toEnd === 0) {
@@ -26,55 +26,54 @@ const score = () => {
         }, 300);
     }
 }
-const showTiles = function (clickOne, indexOne, tiles, testFunc) {
+const showTiles = function (clickA, indexA, tiles) {
     if (flag) {
         flag = !flag;
-        clickTwo = clickOne;
-        indexTwo = indexOne;
+        clickB = clickA;
+        indexB = indexA;
     } else {
         flag = !flag;
-        if (clickOne === clickTwo) {
+        if (clickA === clickB) {
             toEnd--;
             setTimeout(() => {
-                tiles[indexOne].style.transform = "translate(0,-5000px)";
-                tiles[indexTwo].style.transform = "translate(0,-5000px)";
+                tiles[indexA].style.transform = "translate(0,-5000px)";
+                tiles[indexB].style.transform = "translate(0,-5000px)";
             }, 500);
         } else {
             setTimeout(() => {
-                tiles[indexOne].classList.remove('on');
-                tiles[indexTwo].classList.remove('on');
+                tiles[indexA].classList.remove('on');
+                tiles[indexB].classList.remove('on');
             }, 500);
         }
         score();
     }
 }
-const tilesListener = () => {
+const tileClick = () => {
     const tiles = [...container.querySelectorAll('.tile')];
     tiles.forEach((element, key) => {
         element.dataset.key = key;
         const testFunc = () => {
+            if (element.classList.contains("on")) return;
             number++;
             moves.textContent = `moves: ${number}`;
-            let clickOne = element.textContent;
-            let indexOne = element.dataset.key;
+            let clickA = element.textContent;
+            let indexA = element.dataset.key;
             element.classList.add('on');
-            console.log(`tile o indexie ${indexOne}, wartość ${clickOne}`);
-            showTiles(clickOne, indexOne, tiles, testFunc);
+            showTiles(clickA, indexA, tiles);
         }
         element.addEventListener("click", testFunc);
     });
 }
 const random = () => {
     for (let i = 0; i < 8; i++) {
-        const numbersRandom = Math.floor(Math.random() * numbers.length);
+        const randomNumbers = Math.floor(Math.random() * numbers.length);
         for (let i = 0; i < 2; i++) {
-            const randomTab = Math.floor(Math.random() * tilesArray.length);
-            tilesArray[randomTab].textContent = numbers[numbersRandom];
-            tilesArray.splice(randomTab, 1);
+            const randomTilesArray = Math.floor(Math.random() * tilesArray.length);
+            tilesArray[randomTilesArray].textContent = numbers[randomNumbers];
+            tilesArray.splice(randomTilesArray, 1);
         }
-        numbers.splice(numbersRandom, 1);
+        numbers.splice(randomNumbers, 1);
     }
-    
 }
 const startGame = () => {
     for (let i = 0; i < 16; i++) {
@@ -84,9 +83,8 @@ const startGame = () => {
         tilesArray.push(tile);
     }
     random();
-    tilesListener();
+    tileClick();
 }
-
 startGame();
 btn.addEventListener("click", () => {
     if (canAgain) {
