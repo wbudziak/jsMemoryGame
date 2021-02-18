@@ -1,7 +1,7 @@
 const container = document.querySelector('.container');
 const btn = document.querySelector("button");
-const atempts = document.querySelector('span');
-
+const moves = document.querySelector('span');
+// btn.style.display = "none";
 const tilesArray = [];
 let numbers = [0, 1, 2, 3, 4, 5, 6, 7];
 let number = 0;
@@ -15,7 +15,15 @@ let indexTwo = 0;
 const score = () => {
     if (toEnd === 0) {
         canAgain = !canAgain;
-        alert("Koniec gry, wygrałeś!");
+        setTimeout(() => {
+            const tiles = [...container.querySelectorAll('.tile')];
+            tiles.forEach(element => {
+                container.removeChild(element);
+            });
+        }, 1000);
+        setTimeout(() => {
+            btn.classList.add("button-show");
+        }, 300);
     }
 }
 const showTiles = function (clickOne, indexOne, tiles, testFunc) {
@@ -28,8 +36,8 @@ const showTiles = function (clickOne, indexOne, tiles, testFunc) {
         if (clickOne === clickTwo) {
             toEnd--;
             setTimeout(() => {
-                tiles[indexOne].style.display = "none";
-                tiles[indexTwo].style.display = "none";
+                tiles[indexOne].style.transform = "translate(0,-5000px)";
+                tiles[indexTwo].style.transform = "translate(0,-5000px)";
             }, 500);
         } else {
             setTimeout(() => {
@@ -46,7 +54,7 @@ const tilesListener = () => {
         element.dataset.key = key;
         const testFunc = () => {
             number++;
-            atempts.textContent = `atempts:${number}`;
+            moves.textContent = `moves: ${number}`;
             let clickOne = element.textContent;
             let indexOne = element.dataset.key;
             element.classList.add('on');
@@ -66,6 +74,7 @@ const random = () => {
         }
         numbers.splice(numbersRandom, 1);
     }
+    
 }
 const startGame = () => {
     for (let i = 0; i < 16; i++) {
@@ -80,11 +89,13 @@ const startGame = () => {
 
 startGame();
 btn.addEventListener("click", () => {
-    if(canAgain){
+    if (canAgain) {
+        btn.classList.remove("button-show");
         canAgain = !canAgain;
-        number=0;
-        toEnd = 8;
         numbers = [0, 1, 2, 3, 4, 5, 6, 7];
+        toEnd = 8;
+        number = 0;
+        moves.textContent = `moves: ${number}`;
         startGame();
     }
 });
