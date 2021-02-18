@@ -76,11 +76,16 @@ const random = () => {
     }
 }
 const startGame = () => {
+    let timeToAnimation = 30;
     for (let i = 0; i < 16; i++) {
+        timeToAnimation += 30;
         const tile = document.createElement('div');
         tile.className = 'tile';
         container.appendChild(tile);
         tilesArray.push(tile);
+        setTimeout(() => {
+            tile.style.opacity = "1";
+        }, timeToAnimation);
     }
     random();
     tileClick();

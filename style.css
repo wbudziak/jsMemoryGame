@@ -34,6 +34,8 @@ body {
   -ms-grid-rows: (1fr)[4];
       grid-template-rows: repeat(4, 1fr);
   grid-gap: 10px;
+  -webkit-transition: .5s linear transform;
+  transition: .5s linear transform;
 }
 
 @media (max-width: 500px) {
@@ -46,6 +48,7 @@ body {
 .tile {
   position: relative;
   cursor: pointer;
+  opacity: 0;
   -webkit-transition: .3s linear;
   transition: .3s linear;
   background-color: #925fd0;
