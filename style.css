@@ -38,7 +38,8 @@ body {
 
 @media (max-width: 500px) {
   .container {
-    height: 75vh;
+    height: 60vh;
+    max-width: 75%;
   }
 }
 
