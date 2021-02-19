@@ -51,7 +51,8 @@ const checkTile = function (selectIdA, indexA, tiles) {
                 tiles[indexB].classList.add("matched");
                 howManySelects = 0;
             }, 500);
-        } else {
+        } 
+        else {
             setTimeout(() => {
                 tiles[indexA].classList.remove('active');
                 tiles[indexB].classList.remove('active');
@@ -67,12 +68,10 @@ const selectTile = () => {
     tiles.forEach((tile, index) => {
         tile.dataset.index = index;
         tile.addEventListener("click", () => {
+            if (tile.classList.contains('active')) return;
             howManySelects++;
-            if (howManySelects === 3) {
-                return;
-            }
+            if (howManySelects === 3) return;
             if (howManySelects <= 2) {
-                if (tile.classList.contains('active')) return;
                 numberOfMoves++;
                 moves.textContent = `moves: ${numberOfMoves}`;
                 let selectIdA = tile.randomTileID;
