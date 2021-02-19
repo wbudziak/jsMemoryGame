@@ -3,102 +3,129 @@ const btn = document.querySelector("button");
 const moves = document.querySelector('span');
 
 const tilesArray = [];
-let numbers = [0, 1, 2, 3, 4, 5, 6, 7];
-let number = 0;
+let pictures = [
+    "img/js.png",
+    "img/sass.png",
+    "img/css.png",
+    "img/github.png",
+    "img/html.png",
+    "img/react.png",
+    "img/wordpress.png",
+    "img/vsc.png"
+];
+let numberOfMoves = 0;
 let toEnd = 8;
+let howManyTiles = 16;
 
-let canAgain = false;
+let whenAgain = false;
 let flag = true;
-let clickB = "";
+let selectIdB = "";
 let indexB = 0;
 
-const score = () => {
+const endGame = () => {
     if (toEnd === 0) {
-        canAgain = !canAgain;
+        whenAgain = !whenAgain;
         setTimeout(() => {
             const tiles = [...container.querySelectorAll('.tile')];
-            tiles.forEach(element => {
-                container.removeChild(element);
+            tiles.forEach(tile => {
+                container.removeChild(tile);
             });
         }, 1000);
         setTimeout(() => {
-            btn.classList.add("button-show");
+            btn.classList.add('button-active');
         }, 300);
     }
 }
-const showTiles = function (clickA, indexA, tiles) {
+
+const checkTile = function (selectIdA, indexA, tiles) {
     if (flag) {
         flag = !flag;
-        clickB = clickA;
+        selectIdB = selectIdA;
         indexB = indexA;
     } else {
         flag = !flag;
-        if (clickA === clickB) {
+        if (selectIdA === selectIdB) {
             toEnd--;
             setTimeout(() => {
-                tiles[indexA].style.transform = "translate(0,-5000px)";
-                tiles[indexB].style.transform = "translate(0,-5000px)";
+                tiles[indexA].classList.add("matched");
+                tiles[indexB].classList.add("matched");
             }, 500);
         } else {
             setTimeout(() => {
-                tiles[indexA].classList.remove('on');
-                tiles[indexB].classList.remove('on');
+                tiles[indexA].classList.remove('active');
+                tiles[indexB].classList.remove('active');
             }, 500);
         }
-        score();
+        endGame();
     }
 }
-const tileClick = () => {
+
+const selectTile = () => {
     const tiles = [...container.querySelectorAll('.tile')];
-    tiles.forEach((element, key) => {
-        element.dataset.key = key;
-        const testFunc = () => {
-            if (element.classList.contains("on")) return;
-            number++;
-            moves.textContent = `moves: ${number}`;
-            let clickA = element.textContent;
-            let indexA = element.dataset.key;
-            element.classList.add('on');
-            showTiles(clickA, indexA, tiles);
-        }
-        element.addEventListener("click", testFunc);
+    tiles.forEach((tile, index) => {
+        tile.dataset.index = index;
+        tile.addEventListener("click", () => {
+            if (tile.classList.contains('active')) return;
+            numberOfMoves++;
+            moves.textContent = `moves: ${numberOfMoves}`;
+            let selectIdA = tile.randomTileID;
+            let indexA = tile.dataset.index;
+            tile.classList.add('active');
+            checkTile(selectIdA, indexA, tiles);
+        });
     });
 }
+
 const random = () => {
-    for (let i = 0; i < 8; i++) {
-        const randomNumbers = Math.floor(Math.random() * numbers.length);
+    for (let i = 0; i < howManyTiles / 2; i++) {
+        const randomPicture = Math.floor(Math.random() * pictures.length);
         for (let i = 0; i < 2; i++) {
-            const randomTilesArray = Math.floor(Math.random() * tilesArray.length);
-            tilesArray[randomTilesArray].textContent = numbers[randomNumbers];
-            tilesArray.splice(randomTilesArray, 1);
+            const randomTile = Math.floor(Math.random() * tilesArray.length);
+            const img = document.createElement("img");
+            img.src = pictures[randomPicture];
+            tilesArray[randomTile].appendChild(img);
+            tilesArray[randomTile].randomTileID = pictures[randomPicture];
+            tilesArray.splice(randomTile, 1);
         }
-        numbers.splice(randomNumbers, 1);
+        pictures.splice(randomPicture, 1);
     }
 }
+
 const startGame = () => {
     let timeToAnimation = 30;
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < howManyTiles; i++) {
         timeToAnimation += 30;
         const tile = document.createElement('div');
         tile.className = 'tile';
         container.appendChild(tile);
-        tilesArray.push(tile);
         setTimeout(() => {
             tile.style.opacity = "1";
         }, timeToAnimation);
+        tilesArray.push(tile);
     }
     random();
-    tileClick();
+    selectTile();
 }
 startGame();
-btn.addEventListener("click", () => {
-    if (canAgain) {
-        btn.classList.remove("button-show");
-        canAgain = !canAgain;
-        numbers = [0, 1, 2, 3, 4, 5, 6, 7];
+
+const tryAgain = () => {
+    if (whenAgain) {
+        whenAgain = !whenAgain;
         toEnd = 8;
-        number = 0;
-        moves.textContent = `moves: ${number}`;
+        numberOfMoves = 0;
+        pictures = [
+            "img/js.png",
+            "img/sass.png",
+            "img/css.png",
+            "img/github.png",
+            "img/html.png",
+            "img/react.png",
+            "img/wordpress.png",
+            "img/vsc.png"
+        ];
+        moves.textContent = `moves: ${numberOfMoves}`;
+        btn.classList.remove('button-active');
         startGame();
     }
-});
+}
+btn.addEventListener('click', tryAgain);

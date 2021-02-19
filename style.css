@@ -70,13 +70,36 @@ body {
   border-radius: 5px;
 }
 
-.on {
+.tile img {
+  opacity: 0;
+  width: 100px;
+  max-width: 100%;
+  -webkit-transition: .3s linear;
+  transition: .3s linear;
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.matched {
+  -webkit-animation: matchedAnim linear 1s both;
+          animation: matchedAnim linear 1s both;
+}
+
+.active {
   -webkit-transform: rotateY(0deg);
           transform: rotateY(0deg);
   font-size: 40px;
   background-color: white;
   -webkit-box-shadow: inset 20px 50px 100px rgba(203, 199, 199, 0.5), inset 5px 10px 60px rgba(91, 84, 84, 0.5);
           box-shadow: inset 20px 50px 100px rgba(203, 199, 199, 0.5), inset 5px 10px 60px rgba(91, 84, 84, 0.5);
+}
+
+.active img {
+  opacity: 1;
 }
 
 .reset-container {
@@ -121,13 +144,13 @@ button {
   transition: .5s linear;
 }
 
-.button-show {
+.button-active {
   display: block;
-  -webkit-animation: animate .5s linear both;
-          animation: animate .5s linear both;
+  -webkit-animation: buttonAnimate .5s linear both;
+          animation: buttonAnimate .5s linear both;
 }
 
-@-webkit-keyframes animate {
+@-webkit-keyframes buttonAnimate {
   0% {
   }
   100% {
@@ -137,13 +160,35 @@ button {
   }
 }
 
-@keyframes animate {
+@keyframes buttonAnimate {
   0% {
   }
   100% {
     width: 200px;
     height: 50px;
     font-size: 24px;
+  }
+}
+
+@-webkit-keyframes matchedAnim {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, -5000px);
+            transform: translate(0, -5000px);
+  }
+}
+
+@keyframes matchedAnim {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, -5000px);
+            transform: translate(0, -5000px);
   }
 }
 /*# sourceMappingURL=style.css.map */

@@ -43,14 +43,32 @@ body{
     color: gray;
     transform: rotateY(-180deg);
     border-radius: 5px;
+    img{
+        opacity: 0;
+        width: 100px;
+        max-width: 100%;
+        transition: .3s linear;
+        user-drag: none;  
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
 }
-.on{
+.matched{
+  animation: matchedAnim linear 1s both;
+}
+.active{
     transform: rotateY(0deg);
     font-size: 40px;
     background-color: white;
     box-shadow: 
     inset 20px 50px 100px rgba(203, 199, 199, 0.5),
-    inset 5px 10px 60px  rgba(91, 84, 84, 0.5),
+    inset 5px 10px 60px  rgba(91, 84, 84, 0.5);
+    img{
+        opacity: 1;
+    }
 }
 .reset-container{
     max-width: 500px;
@@ -81,16 +99,24 @@ button{
     background-color: rgb(237, 171, 72);
     transition: .5s linear;
 }
-.button-show{
+.button-active{
     display: block;
-    animation: animate .5s linear both;
+    animation: buttonAnimate .5s linear both;
 }
-@keyframes animate{
+@keyframes buttonAnimate{
     0%{}
     100%{
         width: 200px;
         height: 50px;
         font-size: 24px;
+    }
+}
+@keyframes matchedAnim{
+    0%{
+        transform: translate(0,0);
+    }
+    100%{
+        transform: translate(0,-5000px);
     }
 }
 
