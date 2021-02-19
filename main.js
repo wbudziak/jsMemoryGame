@@ -16,7 +16,7 @@ let pictures = [
 let numberOfMoves = 0;
 let toEnd = 8;
 let howManyTiles = 16;
-
+let howManySelects = 0;
 let whenAgain = false;
 let flag = true;
 let selectIdB = "";
@@ -49,11 +49,13 @@ const checkTile = function (selectIdA, indexA, tiles) {
             setTimeout(() => {
                 tiles[indexA].classList.add("matched");
                 tiles[indexB].classList.add("matched");
+                howManySelects = 0;
             }, 500);
         } else {
             setTimeout(() => {
                 tiles[indexA].classList.remove('active');
                 tiles[indexB].classList.remove('active');
+                howManySelects = 0;
             }, 500);
         }
         endGame();
@@ -65,13 +67,19 @@ const selectTile = () => {
     tiles.forEach((tile, index) => {
         tile.dataset.index = index;
         tile.addEventListener("click", () => {
-            if (tile.classList.contains('active')) return;
-            numberOfMoves++;
-            moves.textContent = `moves: ${numberOfMoves}`;
-            let selectIdA = tile.randomTileID;
-            let indexA = tile.dataset.index;
-            tile.classList.add('active');
-            checkTile(selectIdA, indexA, tiles);
+            howManySelects++;
+            if (howManySelects === 3) {
+                return;
+            }
+            if (howManySelects <= 2) {
+                if (tile.classList.contains('active')) return;
+                numberOfMoves++;
+                moves.textContent = `moves: ${numberOfMoves}`;
+                let selectIdA = tile.randomTileID;
+                let indexA = tile.dataset.index;
+                tile.classList.add('active');
+                checkTile(selectIdA, indexA, tiles);
+            }
         });
     });
 }
