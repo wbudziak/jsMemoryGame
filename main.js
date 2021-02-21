@@ -1,6 +1,8 @@
 const container = document.querySelector('.container');
 const btn = document.querySelector("button");
 const moves = document.querySelector('span');
+const matches = document.querySelector(".matches");
+
 
 const tilesArray = [];
 let pictures = [
@@ -15,6 +17,7 @@ let pictures = [
 ];
 let numberOfMoves = 0;
 let toEnd = 8;
+let matchesNumber = 0;
 let howManyTiles = 16;
 let howManySelects = 0;
 let whenAgain = false;
@@ -44,8 +47,12 @@ const checkTile = function (selectIdA, indexA, tiles) {
         indexB = indexA;
     } else {
         flag = !flag;
+        numberOfMoves++;
+        moves.textContent = `moves: ${numberOfMoves}`;
         if (selectIdA === selectIdB) {
             toEnd--;
+            matchesNumber++;
+            matches.textContent = `matches: ${matchesNumber}/${howManyTiles/2}`;
             setTimeout(() => {
                 tiles[indexA].classList.add("matched");
                 tiles[indexB].classList.add("matched");
@@ -72,8 +79,6 @@ const selectTile = () => {
             howManySelects++;
             if (howManySelects === 3) return;
             if (howManySelects <= 2) {
-                numberOfMoves++;
-                moves.textContent = `moves: ${numberOfMoves}`;
                 let selectIdA = tile.randomTileID;
                 let indexA = tile.dataset.index;
                 tile.classList.add('active');
@@ -120,6 +125,7 @@ const tryAgain = () => {
         whenAgain = !whenAgain;
         toEnd = 8;
         numberOfMoves = 0;
+        matchesNumber = 0;
         pictures = [
             "img/js.png",
             "img/sass.png",
@@ -131,6 +137,7 @@ const tryAgain = () => {
             "img/vsc.png"
         ];
         moves.textContent = `moves: ${numberOfMoves}`;
+        matches.textContent = `matches: ${matchesNumber}/${howManyTiles/2}`;
         btn.classList.remove('button-active');
         startGame();
     }
