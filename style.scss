@@ -24,11 +24,10 @@ body {
     grid-template-rows: repeat(4, 1fr);
     grid-gap: 10px;
     transition: .5s linear transform;
+
     @media(max-width:500px) {
         height: 60vh;
         max-width: 100%;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(4, 1fr);
     }
 }
 
@@ -39,7 +38,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0px;
+    font-size: 16px;
     transform: rotateY(-180deg);
     border-radius: 7px;
     border: double 1px transparent;
@@ -62,7 +61,7 @@ body {
     }
 }
 
-.sort{
+.sort {
     animation: sorts .6s linear both;
 }
 
@@ -72,7 +71,6 @@ body {
 
 .active {
     transform: rotateY(0deg);
-    font-size: 40px;
     background-color: white;
     background-image: linear-gradient(#ffffff, #ffffff), radial-gradient(circle at top left, #fff, #fff);
     box-shadow:
@@ -128,7 +126,6 @@ button {
 
 button:hover {
     transform: scale(0.97);
-    border-radius: 10px;
 }
 
 .button-active {
@@ -165,4 +162,3 @@ button:hover {
         font-size: 24px;
     }
 }
-

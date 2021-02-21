@@ -3,7 +3,6 @@ const btn = document.querySelector("button");
 const moves = document.querySelector('.moves');
 const matches = document.querySelector(".matches");
 
-
 const tilesArray = [];
 let pictures = [
     "img/js.png",
@@ -94,6 +93,7 @@ const random = () => {
             const randomTile = Math.floor(Math.random() * tilesArray.length);
             const img = document.createElement("img");
             img.src = pictures[randomPicture];
+            img.alt = pictures[randomPicture];
             tilesArray[randomTile].appendChild(img);
             tilesArray[randomTile].randomTileID = pictures[randomPicture];
             tilesArray.splice(randomTile, 1);

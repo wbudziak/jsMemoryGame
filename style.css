@@ -42,10 +42,6 @@ body {
   .container {
     height: 60vh;
     max-width: 100%;
-    -ms-grid-columns: (1fr)[4];
-        grid-template-columns: repeat(4, 1fr);
-    -ms-grid-rows: (1fr)[4];
-        grid-template-rows: repeat(4, 1fr);
   }
 }
 
@@ -62,7 +58,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: 0px;
+  font-size: 16px;
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
   border-radius: 7px;
@@ -102,7 +98,6 @@ body {
 .active {
   -webkit-transform: rotateY(0deg);
           transform: rotateY(0deg);
-  font-size: 40px;
   background-color: white;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff)), radial-gradient(circle at top left, #fff, #fff);
   background-image: linear-gradient(#ffffff, #ffffff), radial-gradient(circle at top left, #fff, #fff);
@@ -174,7 +169,6 @@ button {
 button:hover {
   -webkit-transform: scale(0.97);
           transform: scale(0.97);
-  border-radius: 10px;
 }
 
 .button-active {
