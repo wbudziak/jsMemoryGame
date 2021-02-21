@@ -1,6 +1,6 @@
 const container = document.querySelector('.container');
 const btn = document.querySelector("button");
-const moves = document.querySelector('span');
+const moves = document.querySelector('.moves');
 const matches = document.querySelector(".matches");
 
 

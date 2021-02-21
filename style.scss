@@ -1,3 +1,5 @@
+$tile-color: #9d7efacd;
+
 body {
     width: 100%;
     height: 100vh;
@@ -41,13 +43,13 @@ body {
     transform: rotateY(-180deg);
     border-radius: 7px;
     border: double 1px transparent;
-    background-image: linear-gradient(#9d7efacd, #1a1919), radial-gradient(circle at top left, #1a1919, #9d7efacd);
+    background-image: linear-gradient($tile-color, #1a1919), radial-gradient(circle at top left, #1a1919, $tile-color);
     background-origin: border-box;
     background-clip: content-box, border-box;
     transition: .15s linear;
 
     img {
-        opacity: 0;
+        display: none;
         width: 100px;
         max-width: 100%;
         transition: .2s linear;
@@ -78,11 +80,11 @@ body {
         inset 5px 10px 60px rgba(91, 84, 84, 0.5);
 
     img {
-        opacity: 1;
+        display: block;
     }
 }
 
-.reset-container {
+.stats {
     max-width: 500px;
     width: 100%;
     height: 100px;

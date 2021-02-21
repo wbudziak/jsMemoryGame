@@ -76,7 +76,7 @@ body {
 }
 
 .tile img {
-  opacity: 0;
+  display: none;
   width: 100px;
   max-width: 100%;
   -webkit-transition: .2s linear;
@@ -111,10 +111,10 @@ body {
 }
 
 .active img {
-  opacity: 1;
+  display: block;
 }
 
-.reset-container {
+.stats {
   max-width: 500px;
   width: 100%;
   height: 100px;
@@ -130,7 +130,7 @@ body {
 }
 
 @media (max-width: 500px) {
-  .reset-container {
+  .stats {
     height: 15vh;
   }
 }
