@@ -41,7 +41,11 @@ body {
 @media (max-width: 500px) {
   .container {
     height: 60vh;
-    max-width: 75%;
+    max-width: 100%;
+    -ms-grid-columns: (1fr)[4];
+        grid-template-columns: repeat(4, 1fr);
+    -ms-grid-rows: (1fr)[4];
+        grid-template-rows: repeat(4, 1fr);
   }
 }
 
@@ -49,11 +53,6 @@ body {
   position: relative;
   cursor: pointer;
   opacity: 0;
-  -webkit-transition: .15s linear;
-  transition: .15s linear;
-  background-color: #925fd0;
-  -webkit-box-shadow: inset 20px 50px 100px rgba(193, 182, 182, 0.5), inset 5px 10px 60px rgba(0, 0, 0, 0.5);
-          box-shadow: inset 20px 50px 100px rgba(193, 182, 182, 0.5), inset 5px 10px 60px rgba(0, 0, 0, 0.5);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -64,10 +63,16 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   font-size: 0px;
-  color: gray;
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
-  border-radius: 5px;
+  border-radius: 7px;
+  border: double 1px transparent;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#9d7efacd), to(#1a1919)), radial-gradient(circle at top left, #1a1919, #9d7efacd);
+  background-image: linear-gradient(#9d7efacd, #1a1919), radial-gradient(circle at top left, #1a1919, #9d7efacd);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  -webkit-transition: .15s linear;
+  transition: .15s linear;
 }
 
 .tile img {
@@ -94,6 +99,8 @@ body {
           transform: rotateY(0deg);
   font-size: 40px;
   background-color: white;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff)), radial-gradient(circle at top left, #fff, #fff);
+  background-image: linear-gradient(#ffffff, #ffffff), radial-gradient(circle at top left, #fff, #fff);
   -webkit-box-shadow: inset 20px 50px 100px rgba(203, 199, 199, 0.5), inset 5px 10px 60px rgba(91, 84, 84, 0.5);
           box-shadow: inset 20px 50px 100px rgba(203, 199, 199, 0.5), inset 5px 10px 60px rgba(91, 84, 84, 0.5);
 }

@@ -58,8 +58,7 @@ const checkTile = function (selectIdA, indexA, tiles) {
                 tiles[indexB].classList.add("matched");
                 howManySelects = 0;
             }, 500);
-        } 
-        else {
+        } else {
             setTimeout(() => {
                 tiles[indexA].classList.remove('active');
                 tiles[indexB].classList.remove('active');
@@ -112,6 +111,7 @@ const startGame = () => {
         container.appendChild(tile);
         setTimeout(() => {
             tile.style.opacity = "1";
+            // tile.style.transform = "translateY(0px)";
         }, timeToAnimation);
         tilesArray.push(tile);
     }
