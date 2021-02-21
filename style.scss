@@ -39,7 +39,6 @@ body {
     justify-content: center;
     font-size: 0px;
     transform: rotateY(-180deg);
-    // transform: translateY(-5000px);
     border-radius: 7px;
     border: double 1px transparent;
     background-image: linear-gradient(#9d7efacd, #1a1919), radial-gradient(circle at top left, #1a1919, #9d7efacd);
@@ -59,6 +58,10 @@ body {
         -webkit-user-select: none;
         -ms-user-select: none;
     }
+}
+
+.sort{
+    animation: sorts .6s linear both;
 }
 
 .matched {
@@ -131,13 +134,13 @@ button:hover {
     animation: buttonAnimate .5s linear both;
 }
 
-@keyframes buttonAnimate {
-    0% {}
+@keyframes sorts {
+    0% {
+        transform: translateY(-2000px);
+    }
 
     100% {
-        width: 200px;
-        height: 50px;
-        font-size: 24px;
+        transform: translateY(0px);
     }
 }
 
@@ -150,3 +153,14 @@ button:hover {
         transform: translate(0, -5000px);
     }
 }
+
+@keyframes buttonAnimate {
+    0% {}
+
+    100% {
+        width: 200px;
+        height: 50px;
+        font-size: 24px;
+    }
+}
+

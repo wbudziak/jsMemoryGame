@@ -103,15 +103,18 @@ const random = () => {
 }
 
 const startGame = () => {
-    let timeToAnimation = 30;
+    let timeToAnimation = 50;
     for (let i = 0; i < howManyTiles; i++) {
-        timeToAnimation += 30;
+        timeToAnimation += 50;
         const tile = document.createElement('div');
         tile.className = 'tile';
         container.appendChild(tile);
         setTimeout(() => {
             tile.style.opacity = "1";
-            // tile.style.transform = "translateY(0px)";
+            tile.classList.add("sort");
+            setTimeout(() => {
+                tile.classList.remove("sort");
+            }, 600);
         }, timeToAnimation);
         tilesArray.push(tile);
     }

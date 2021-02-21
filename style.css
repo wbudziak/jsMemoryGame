@@ -89,6 +89,11 @@ body {
   -ms-user-select: none;
 }
 
+.sort {
+  -webkit-animation: sorts .6s linear both;
+          animation: sorts .6s linear both;
+}
+
 .matched {
   -webkit-animation: matchedAnim linear 1s both;
           animation: matchedAnim linear 1s both;
@@ -178,23 +183,25 @@ button:hover {
           animation: buttonAnimate .5s linear both;
 }
 
-@-webkit-keyframes buttonAnimate {
+@-webkit-keyframes sorts {
   0% {
+    -webkit-transform: translateY(-2000px);
+            transform: translateY(-2000px);
   }
   100% {
-    width: 200px;
-    height: 50px;
-    font-size: 24px;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
   }
 }
 
-@keyframes buttonAnimate {
+@keyframes sorts {
   0% {
+    -webkit-transform: translateY(-2000px);
+            transform: translateY(-2000px);
   }
   100% {
-    width: 200px;
-    height: 50px;
-    font-size: 24px;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
   }
 }
 
@@ -217,6 +224,26 @@ button:hover {
   100% {
     -webkit-transform: translate(0, -5000px);
             transform: translate(0, -5000px);
+  }
+}
+
+@-webkit-keyframes buttonAnimate {
+  0% {
+  }
+  100% {
+    width: 200px;
+    height: 50px;
+    font-size: 24px;
+  }
+}
+
+@keyframes buttonAnimate {
+  0% {
+  }
+  100% {
+    width: 200px;
+    height: 50px;
+    font-size: 24px;
   }
 }
 /*# sourceMappingURL=style.css.map */
