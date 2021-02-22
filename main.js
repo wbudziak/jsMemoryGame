@@ -15,10 +15,10 @@ let pictures = [
     "img/vsc.png"
 ];
 let numberOfMoves = 0;
+let NumberOfMatches = 0;
+let activeSelects = 0;
+let tilesNumber = 16;
 let toEnd = 8;
-let matchesNumber = 0;
-let howManyTiles = 16;
-let howManySelects = 0;
 let whenAgain = false;
 let flag = true;
 let selectIdB = "";
@@ -32,10 +32,8 @@ const endGame = () => {
             tiles.forEach(tile => {
                 container.removeChild(tile);
             });
-        }, 1000);
-        setTimeout(() => {
             btn.classList.add('button-active');
-        }, 300);
+        }, 1000);
     }
 }
 
@@ -50,18 +48,18 @@ const checkTile = function (selectIdA, indexA, tiles) {
         moves.textContent = `moves: ${numberOfMoves}`;
         if (selectIdA === selectIdB) {
             toEnd--;
-            matchesNumber++;
-            matches.textContent = `matches: ${matchesNumber}/${howManyTiles/2}`;
+            NumberOfMatches++;
+            matches.textContent = `matches: ${NumberOfMatches}/${tilesNumber/2}`;
             setTimeout(() => {
                 tiles[indexA].classList.add("matched");
                 tiles[indexB].classList.add("matched");
-                howManySelects = 0;
+                activeSelects = 0;
             }, 500);
         } else {
             setTimeout(() => {
                 tiles[indexA].classList.remove('active');
                 tiles[indexB].classList.remove('active');
-                howManySelects = 0;
+                activeSelects = 0;
             }, 500);
         }
         endGame();
@@ -74,9 +72,9 @@ const selectTile = () => {
         tile.dataset.index = index;
         tile.addEventListener("click", () => {
             if (tile.classList.contains('active')) return;
-            howManySelects++;
-            if (howManySelects === 3) return;
-            if (howManySelects <= 2) {
+            activeSelects++;
+            if (activeSelects === 3) return;
+            if (activeSelects <= 2) {
                 let selectIdA = tile.randomTileID;
                 let indexA = tile.dataset.index;
                 tile.classList.add('active');
@@ -87,7 +85,7 @@ const selectTile = () => {
 }
 
 const random = () => {
-    for (let i = 0; i < howManyTiles / 2; i++) {
+    for (let i = 0; i < tilesNumber / 2; i++) {
         const randomPicture = Math.floor(Math.random() * pictures.length);
         for (let i = 0; i < 2; i++) {
             const randomTile = Math.floor(Math.random() * tilesArray.length);
@@ -104,7 +102,7 @@ const random = () => {
 
 const startGame = () => {
     let timeToAnimation = 50;
-    for (let i = 0; i < howManyTiles; i++) {
+    for (let i = 0; i < tilesNumber; i++) {
         timeToAnimation += 50;
         const tile = document.createElement('div');
         tile.className = 'tile';
@@ -128,7 +126,7 @@ const tryAgain = () => {
         whenAgain = !whenAgain;
         toEnd = 8;
         numberOfMoves = 0;
-        matchesNumber = 0;
+        NumberOfMatches = 0;
         pictures = [
             "img/js.png",
             "img/sass.png",
@@ -140,7 +138,7 @@ const tryAgain = () => {
             "img/vsc.png"
         ];
         moves.textContent = `moves: ${numberOfMoves}`;
-        matches.textContent = `matches: ${matchesNumber}/${howManyTiles/2}`;
+        matches.textContent = `matches: ${NumberOfMatches}/${tilesNumber/2}`;
         btn.classList.remove('button-active');
         startGame();
     }

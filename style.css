@@ -173,8 +173,8 @@ button:hover {
 
 .button-active {
   display: block;
-  -webkit-animation: buttonAnimate .5s linear both;
-          animation: buttonAnimate .5s linear both;
+  -webkit-animation: buttonAnimate .3s linear both;
+          animation: buttonAnimate .3s linear both;
 }
 
 @-webkit-keyframes sorts {
