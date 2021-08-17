@@ -1,164 +1,168 @@
 $tile-color: #9d7efacd;
 
 body {
-    width: 100%;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Roboto', sans-serif;
-    overflow: hidden;
-    background-color: #1a1919;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+  background-color: #1a1919;
 }
 
 .container {
-    max-width: 500px;
-    width: 100%;
-    height: 600px;
-    box-sizing: border-box;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-gap: 10px;
-    transition: .5s linear transform;
+  max-width: 500px;
+  width: 100%;
+  //   height: 600px;
 
-    @media(max-width:500px) {
-        height: 60vh;
-        max-width: 100%;
-    }
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  // grid-template-rows: repeat(4, 1fr);
+  grid-gap: 10px;
+  transition: 0.5s linear transform;
+
+  @media (max-width: 500px) {
+    height: 60vh;
+    max-width: 100%;
+  }
 }
 
 .tile {
-    position: relative;
-    cursor: pointer;
-    opacity: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    transform: rotateY(-180deg);
-    border-radius: 7px;
-    border: double 1px transparent;
-    background-image: linear-gradient($tile-color, #1a1919), radial-gradient(circle at top left, #1a1919, $tile-color);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    transition: .15s linear;
+  position: relative;
+  cursor: pointer;
+  opacity: 0;
+  display: flex;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transform: rotateY(-180deg);
+  border-radius: 7px;
+  border: double 1px transparent;
+  background-image: linear-gradient($tile-color, #1a1919),
+    radial-gradient(circle at top left, #1a1919, $tile-color);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  transition: 0.15s linear;
 
-    img {
-        display: none;
-        width: 100px;
-        max-width: 100%;
-        transition: .2s linear;
-        user-drag: none;
-        user-select: none;
-        -moz-user-select: none;
-        -webkit-user-drag: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-    }
+  img {
+    display: none;
+    width: 100px;
+    max-width: 100%;
+    transition: 0.2s linear;
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
 }
 
 .sort {
-    animation: sorts .6s linear both;
+  animation: sorts 0.6s linear both;
 }
 
 .matched {
-    animation: matchedAnim linear 1s both;
+  animation: matchedAnim linear 1s both;
 }
 
 .active {
-    transform: rotateY(0deg);
-    background-color: white;
-    background-image: linear-gradient(#ffffff, #ffffff), radial-gradient(circle at top left, #fff, #fff);
-    box-shadow:
-        inset 20px 50px 100px rgba(203, 199, 199, 0.5),
-        inset 5px 10px 60px rgba(91, 84, 84, 0.5);
+  transform: rotateY(0deg);
+  background-color: white;
+  background-image: linear-gradient(#ffffff, #ffffff),
+    radial-gradient(circle at top left, #fff, #fff);
+  box-shadow: inset 20px 50px 100px rgba(203, 199, 199, 0.5),
+    inset 5px 10px 60px rgba(91, 84, 84, 0.5);
 
-    img {
-        display: block;
-    }
+  img {
+    display: block;
+  }
 }
 
 .stats {
-    max-width: 500px;
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+  max-width: 500px;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 
-    @media(max-width:500px) {
-        height: 15vh;
-    }
+  @media (max-width: 500px) {
+    height: 15vh;
+  }
 }
 
 span {
-    color: white;
-    font-size: 24px;
+  color: white;
+  font-size: 24px;
 }
 
 .button-container {
-    max-width: 500px;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  max-width: 500px;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button {
-    display: none;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    height: 0px;
-    width: 0;
-    max-width: 100%;
-    border-radius: 5px;
-    font-size: 0px;
-    color: white;
-    background-color: rgb(237, 171, 72);
-    transition: .3s linear;
+  display: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  height: 0px;
+  width: 0;
+  max-width: 100%;
+  border-radius: 5px;
+  font-size: 0px;
+  color: white;
+  background-color: rgb(237, 171, 72);
+  transition: 0.3s linear;
 }
 
 button:hover {
-    transform: scale(0.97);
+  transform: scale(0.97);
 }
 
 .button-active {
-    display: block;
-    animation: buttonAnimate .3s linear both;
+  display: block;
+  animation: buttonAnimate 0.3s linear both;
 }
 
 @keyframes sorts {
-    0% {
-        transform: translateY(-2000px);
-    }
+  0% {
+    transform: translateY(-2000px);
+  }
 
-    100% {
-        transform: translateY(0px);
-    }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 @keyframes matchedAnim {
-    0% {
-        transform: translate(0, 0);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
 
-    100% {
-        transform: translate(0, -5000px);
-    }
+  100% {
+    transform: translate(0, -5000px);
+  }
 }
 
 @keyframes buttonAnimate {
-    0% {}
+  0% {
+  }
 
-    100% {
-        width: 200px;
-        height: 50px;
-        font-size: 24px;
-    }
+  100% {
+    width: 200px;
+    height: 50px;
+    font-size: 24px;
+  }
 }

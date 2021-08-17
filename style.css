@@ -3,20 +3,11 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  font-family: 'Roboto', sans-serif;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
   overflow: hidden;
   background-color: #1a1919;
 }
@@ -24,18 +15,11 @@ body {
 .container {
   max-width: 500px;
   width: 100%;
-  height: 600px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  display: -ms-grid;
+  box-sizing: border-box;
   display: grid;
-  -ms-grid-columns: (1fr)[4];
-      grid-template-columns: repeat(4, 1fr);
-  -ms-grid-rows: (1fr)[4];
-      grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
-  -webkit-transition: .5s linear transform;
-  transition: .5s linear transform;
+  transition: 0.5s linear transform;
 }
 
 @media (max-width: 500px) {
@@ -49,34 +33,25 @@ body {
   position: relative;
   cursor: pointer;
   opacity: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
   font-size: 16px;
-  -webkit-transform: rotateY(-180deg);
-          transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
   border-radius: 7px;
   border: double 1px transparent;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#9d7efacd), to(#1a1919)), radial-gradient(circle at top left, #1a1919, #9d7efacd);
   background-image: linear-gradient(#9d7efacd, #1a1919), radial-gradient(circle at top left, #1a1919, #9d7efacd);
   background-origin: border-box;
   background-clip: content-box, border-box;
-  -webkit-transition: .15s linear;
-  transition: .15s linear;
+  transition: 0.15s linear;
 }
 
 .tile img {
   display: none;
   width: 100px;
   max-width: 100%;
-  -webkit-transition: .2s linear;
-  transition: .2s linear;
+  transition: 0.2s linear;
   user-drag: none;
   user-select: none;
   -moz-user-select: none;
@@ -86,23 +61,18 @@ body {
 }
 
 .sort {
-  -webkit-animation: sorts .6s linear both;
-          animation: sorts .6s linear both;
+  animation: sorts 0.6s linear both;
 }
 
 .matched {
-  -webkit-animation: matchedAnim linear 1s both;
-          animation: matchedAnim linear 1s both;
+  animation: matchedAnim linear 1s both;
 }
 
 .active {
-  -webkit-transform: rotateY(0deg);
-          transform: rotateY(0deg);
+  transform: rotateY(0deg);
   background-color: white;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff)), radial-gradient(circle at top left, #fff, #fff);
   background-image: linear-gradient(#ffffff, #ffffff), radial-gradient(circle at top left, #fff, #fff);
-  -webkit-box-shadow: inset 20px 50px 100px rgba(203, 199, 199, 0.5), inset 5px 10px 60px rgba(91, 84, 84, 0.5);
-          box-shadow: inset 20px 50px 100px rgba(203, 199, 199, 0.5), inset 5px 10px 60px rgba(91, 84, 84, 0.5);
+  box-shadow: inset 20px 50px 100px rgba(203, 199, 199, 0.5), inset 5px 10px 60px rgba(91, 84, 84, 0.5);
 }
 
 .active img {
@@ -113,15 +83,9 @@ body {
   max-width: 500px;
   width: 100%;
   height: 100px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 @media (max-width: 500px) {
@@ -139,15 +103,9 @@ span {
   max-width: 500px;
   width: 100%;
   height: 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 button {
@@ -162,72 +120,33 @@ button {
   font-size: 0px;
   color: white;
   background-color: #edab48;
-  -webkit-transition: .3s linear;
-  transition: .3s linear;
+  transition: 0.3s linear;
 }
 
 button:hover {
-  -webkit-transform: scale(0.97);
-          transform: scale(0.97);
+  transform: scale(0.97);
 }
 
 .button-active {
   display: block;
-  -webkit-animation: buttonAnimate .3s linear both;
-          animation: buttonAnimate .3s linear both;
-}
-
-@-webkit-keyframes sorts {
-  0% {
-    -webkit-transform: translateY(-2000px);
-            transform: translateY(-2000px);
-  }
-  100% {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-  }
+  animation: buttonAnimate 0.3s linear both;
 }
 
 @keyframes sorts {
   0% {
-    -webkit-transform: translateY(-2000px);
-            transform: translateY(-2000px);
+    transform: translateY(-2000px);
   }
   100% {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-  }
-}
-
-@-webkit-keyframes matchedAnim {
-  0% {
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
-  }
-  100% {
-    -webkit-transform: translate(0, -5000px);
-            transform: translate(0, -5000px);
+    transform: translateY(0px);
   }
 }
 
 @keyframes matchedAnim {
   0% {
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
+    transform: translate(0, 0);
   }
   100% {
-    -webkit-transform: translate(0, -5000px);
-            transform: translate(0, -5000px);
-  }
-}
-
-@-webkit-keyframes buttonAnimate {
-  0% {
-  }
-  100% {
-    width: 200px;
-    height: 50px;
-    font-size: 24px;
+    transform: translate(0, -5000px);
   }
 }
 
